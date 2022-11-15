@@ -1,0 +1,291 @@
+---
+title: "Bases de Datos con Python"
+subtitle: ""
+date: "today"
+author: "Diego Medardo Saavedra."
+lang: "es"
+format:
+  revealjs:
+    #chalkboard: 
+      #buttons: false
+    #toc: true
+    incremental: false
+    slide-number: true
+    preview-links: auto
+    logo: img/logo_uide.png
+    #css: styles.css
+    footer: <https://uide.edu.ec>
+    theme: dark
+    makeindex: true
+    #multiplex: true
+    transition: fade
+    chalkboard: true #Pizarra
+    auto-stretch: false
+    smaller: false
+    scrollable: true
+    menu: true
+
+
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+    
+editor: visual
+execute: 
+  echo: true
+  
+bibliography: Bibliografia.bib
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+editor_options: 
+  chunk_output_type: console
+---
+
+## Generalidades
+
+Hasta ahora hemos aprendido lo básico del lenguaje de programación python y lo hemos complementado con MySQL (por separado), es hora de fusionarlos, es decir trabajar con bases de datos MySQL desde Python.
+
+## Instalar el Conector de Python con MySQL.
+
+Para poder trabajar con Python y MySql es necesario instalar un conector mediante pip
+
+``` bash
+pip3 install mysql-connector-python
+```
+
+## Bases de Datos desde Python.
+
+En el archivo.py de vscode podemos conectarnos mediante la siguiente sintaxis.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute('select * from Usuario')
+
+resultado = cursor.fetchall()
+
+print(resultado)
+```
+
+Un cursor es un objeto que nos permite interactuar con la base de datos mediante el lenguaje SQL (que lo hemos revisado previamente). Mediante el comando **execute**, nosotros podemos pasar código sql a través de python a la base de datos, al utilizarlo vamos a requerir que nos devuelva información, la cual vamos a necesitar que sea almacenada, en este caso se utiliza la variable **resultado**.
+
+## Diferencias entre Fetchall y Fetchone.
+
+La diferencia principal entre los métodos Fetchall y Fetchone son:
+
+-   **Fetchall:** Devuelve todos los resultados que encuentra en la base de datos.
+
+-   **Fetchone:** Devuelve solo el primer resultado que encuentra en la base de datos.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute('select * from Usuario')
+
+resultado = cursor.fetchone()
+
+print(resultado)
+
+```
+
+## Insertar Registros en la base de datos.
+
+Si no recordamos como está estructurada nuestra tabla, podemos hacer consultas mediante el comando execute para conocer dicha estructura y saber que queremos insertar.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute("select * from Usuario")
+
+resultado = cursor.fetchall()
+print(resultado)
+
+```
+
+Ahora que ya sabemos como consultar los datos vamos a ingresar por ejemplo un email.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+sql = "insert into Usuario (email, username, edad) values (%s, %s, %s)"
+values = ("micorreo@gmail.com","minombredeusuario", 45)
+
+cursor.execute(sql, values)
+midb.commit()
+
+print(cursor.rowcount)
+
+```
+
+Una vez que ya tenemos los datos ingresados, podemos comprobar que realmente esto sucedió.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute("select * from Usuario")
+
+resultado = cursor.fetchall()
+print(resultado)
+```
+
+## Actualizar registros en la base de datos.
+
+Para poder actualizar los datos que se haya ingresado, es necesario utilizar la siguiente sintaxis.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+sql = "update Usuario set email 0 %s where id = %s"
+values = ('micorreomodificado@gmail.com', '4')
+cursor.execute(sql, values)
+midb.commit()
+```
+
+Ahora podemos comprobar los cambios.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute("select * from Usuario")
+
+resultado = cursor.fetchall()
+print(resultado)
+```
+
+## Eliminar registros en la base de datos.
+
+Un crud completo no estaría listo sin la opción de eliminar, lo único que aumentamos en este punto es la posibilidad de poder eliminar los mismos en nuestra base de datos desde código python, vamos a ello.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+sql = 'delete from Usuario where id = %s'
+values = (4,)
+cursor.execute(sql, values)
+midb.commit()
+```
+
+Podemos probar nuevamente la visualización de Datos.
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute("select * from Usuario")
+
+resultado = cursor.fetchall()
+print(resultado)
+```
+
+## Limitar Resultados obtenidos de la base de datos.
+
+En ocasiones será necesario acceder a datos mediante un límite, veamos como se utiliza esto
+
+```{python}
+#| eval: false
+import mysql.connector
+
+midb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="password.",
+  database="abacom"
+)
+
+cursor = midb.cursor()
+
+cursor.execute("select * from Usuario limit 1")
+
+resultado = cursor.fetchall()
+print(resultado)
+```
+
+En el caso que se desee acceder a más de 1 registro como se indica en el código anterior solo será necesario cambiar el valor **1** por el valor del número de registros existentes que se desee consultar (Ej: 2, 3, 4, ...).

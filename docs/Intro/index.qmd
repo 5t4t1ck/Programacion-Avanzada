@@ -1,0 +1,222 @@
+---
+title: "Intro Python"
+subtitle: "REPL, operaciones matemáticas, Comentarios, Variables, Más de una Variable, Concatenación"
+date: "today"
+author: "Diego Medardo Saavedra."
+lang: "es"
+format:
+  revealjs:
+    #toc: true
+    incremental: false
+    slide-number: true
+    preview-links: auto
+    logo: img/logo_uide.png
+    css: styles.css
+    footer: <https://uide.edu.ec>
+    theme: dark
+    makeindex: true
+    multiplex: true
+    transition: fade
+    chalkboard: false #Pizarra
+    auto-stretch: false
+    scrollable: true
+  #html: 
+    #code-fold: true
+    #html-math-method: katex
+    #multiplex: true
+    #transition: fade
+    #auto-stretch: false
+editor: visual
+execute: 
+  echo: true
+    
+bibliography: Bibliografia.bib
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+---
+
+# Generalidades
+
+## Instalación
+
+Para realizar la instalación de Python es necesario tener en cuenta que existen algunas opciones.
+
+En los sistemas operativos de la empresa Microsoft.
+
+1.  Descarga e Instalación desde la página oficial.
+2.  Descarga e Instalación desde la Tienda de Microsoft [@noauthor_4_nodate]
+3.  Existen otras alternativas para el uso de Python.
+
+## REPL - Python Interactive Shell
+
+### ¿Qué es REPL?
+
+Básicamente es el shell de python, un shell interactivo, el acrónimo REPL significa la abreviatura de: **R**ead, **E**val, **P**rint y **L**oop.
+
+Este interprete se puede utilizar para comprobar de una forma sencilla algunos comando de Python. Para iniciar el interprete es necesario tecla el comando **python3** en una terminal (Gnu/Linux o Mac) o **python** en una consola según [@repl-p]
+
+El proceso que se utiliza es el siguiente.
+
+1.  **Read**: Toma la entrada del usuario (input).
+2.  **Eval**: Evalúa la entrada (input).
+3.  **Print**: Muestra la salida del usuario (output).
+4.  **Loop**: Repite el proceso.
+
+## Un poco de matemáticas.
+
+Con python es posible el desarrollo de operaciones matemáticas de forma sencilla, a continuación algunos ejemplos.
+
+**Suma:**
+
+```{python}
+2+2
+```
+
+**Resta:**
+
+```{python}
+4-2
+```
+
+**Multiplicación**
+
+```{python}
+4*2
+```
+
+**División:**
+
+```{python}
+4/2
+```
+
+**División Exacta:**
+
+```{python}
+4//2
+```
+
+**Módulo:**
+
+```{python}
+4%2
+```
+
+**Potenciación:**
+
+```{python}
+4**2
+```
+
+## Comentarios.
+
+Una buena práctica es el uso de comentarios para nosotros mismos o para otras personas.
+
+Existe una frase que dice "Los buenos programadores crean código que pueden leer los humanos", (Anónimo).
+
+Aunque la ejecución de código permite obtener una solución a un problema (bug) o la complementación de un feacture (características, funcionalidad), la mayor parte del tiempo los programadores **no escriben código**, y esto se debe a las **malas prácticas** de escritura de código.
+
+**Clean Code** como menciona [@anaya2018] brinda las bases necesarias para tener que escribir código una sola vez, y sea fácil de mantener, así se puede dedicar tiempo a la creación de nuevos features o utilizar nuestro tiempo en otro tipo de actividades.
+
+Una buena práctica es el uso de comentarios para nosotros mismos o para otras personas.
+
+Existe una frase que dice "Los buenos programadores crean código que pueden leer los humanos", (Anónimo).
+
+Aunque la ejecución de código permite obtener una solución a un problema (bug) o la complementación de un feacture (características, funcionalidad), la mayor parte del tiempo los programadores no escriben código, y esto se debe a las malas prácticas de escritura de código.
+
+## Formas de escribir comentarios.
+
+-   Comentarios de media línea.
+
+-   Comentarios de una línea.
+
+-   Comentarios de varias líneas.
+
+## Variables
+
+Existen distintas formas de escribir variables, solo se debe tomar en cuenta algunos parámetros básicos para no tener inconvenientes.
+
+### Qué **no** se debe hacer.
+
+-   No escribir variables que empiecen con números.
+
+-   No utilizar palabras reservadas.
+
+-   No escribir variables de más de una palabra separadas
+
+### Qué se debe hacer.
+
+-   Escribir variables que tengan sentido.
+
+-   Escribir variables que empiecen con un "\_"
+
+-   Separar variables con un "\_".
+
+-   Utilizar Camel Case .
+
+## Ejemplos
+
+Mal
+
+```{python}
+a = "Diego Saavedra"
+print(a) #Imprime el valor que se almacena en la variable a
+```
+
+Bien
+
+```{python}
+nombre = "Diego Saavedra" 
+print(nombre) #Imprime el valor que se almacena en la variable nombre
+```
+
+Se recomienda utilizar nombres de variables que hagan sentido a lo que se programa.
+
+Ejemplos de Variables.
+
+```{python}
+correo = "dsaavedra88@gmail.com" #String
+print(correo) #Imprime el valor que se almacena en la variable correo
+
+número = 5 #Int
+print(número) #Imprime el valor que se almacena en la variable número
+
+nacido_vivo = True #Boolean
+print(nacido_vivo) #Imprime el varlor que se almacena en nacido_vivo
+
+notaFinal = 10.0 #Float
+print(notaFinal) #Imprime el varlor que se almacena en notaFinal
+
+complejo = 1j #Complex
+print(complejo) #Imprime el varlor que se almacena en complejo
+```
+
+## Más de una Variable.
+
+Es posible programar más de una variable en una sola línea de código.
+
+Ejemplo.
+
+```{python}
+nombre, apellido, teléfono = "Diego", "Saavedra", "+593992018216"
+print(nombre, apellido, teléfono)
+
+valorInicial = valorMedio = valorFinal = 10
+print(valorInicial, valorMedio, valorFinal)
+```
+
+## Concatenación de Variables.
+
+Una posibilidad al programar en Python es unir (concatenar) más de un resultado en una salida después de un proceso.
+
+Ejemplo:
+
+```{python}
+inicio = "Bienvenidos"
+final = "al curso de Python en Abacom"
+
+print(inicio + final) #No se recomienda
+print(inicio + " " + final) #Se recomienda
+print(inicio, final) #Se recomienda
+```
+
+## Referencias Bibliográficas.

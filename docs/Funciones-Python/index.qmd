@@ -1,0 +1,211 @@
+---
+title: "Funciones en Python"
+subtitle: "Sintaxis, Funciones con parámetros, Funciones sin parámetros"
+date: "today"
+author: "Diego Medardo Saavedra."
+lang: "es"
+format:
+  revealjs:
+    #chalkboard: 
+      #buttons: false
+    #toc: true
+    incremental: false
+    slide-number: true
+    preview-links: auto
+    logo: img/logo_uide.png
+    #css: styles.css
+    footer: <https://uide.edu.ec>
+    theme: dark
+    makeindex: true
+    #multiplex: true
+    transition: fade
+    chalkboard: true #Pizarra
+    auto-stretch: false
+    smaller: false
+    scrollable: true
+    presentation-title-slide-text-alig: left
+    presentation-slide-text-align: justify
+    #menu: true
+  #html: 
+    #code-fold: true
+    #html-math-method: katex
+    #multiplex: true
+    #transition: fade
+    #auto-stretch: false
+editor: visual
+execute: 
+  echo: true
+    
+bibliography: Bibliografia.bib
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Generalidades.
+
+Una función, es la forma de agrupar expresiones y sentencias (algoritmos) que realicen determinadas acciones, pero que éstas, solo se ejecuten cuando son llamadas.
+
+## Características.
+
+![](img/Funciones-en-Python.-Estructura-de-una-funci%C3%B3n.png){fig-align="center" width="428"}
+
+Las funciones se crean mediante la instrucción **def**, adicional a ello es necesario asignar un nombre de función descriptivo, cabe recalcar que es necesario tomar en cuenta las mismas reglas para la creación de variables. Seguido de paréntesis de apertura y cierre.
+
+La definición de la función finaliza con dos puntos **(:)** y el algoritmo que la compone, irá **identado con 4 espacios**.
+
+## Ejemplo:
+
+### Sin Argumentos.
+
+```{python}
+def mi_funcion():
+    return print("Hello")
+saludo = mi_funcion()
+print(saludo)
+```
+
+### Con Argumentos.
+
+```{python}
+nombre = "Diego"
+def mi_funcion(nombre):
+    return print("Hello", nombre)
+  
+saludo = mi_funcion(nombre)
+print(saludo)
+```
+
+## Funciones en Python.
+
+```{python}
+def miFuncionPython():
+  print("Esta es una de mis primeras funcones en Python")
+  
+miFuncionPython()
+```
+
+**Recuerda:** Podemos llamar más de una vez a la función que acabamos de crear y se ejecutará el mismo numeró de veces.
+
+```{python}
+def miFuncionPython():
+  print("Esta es una de mis primeras funcones en Python")
+  
+miFuncionPython()
+miFuncionPython()
+miFuncionPython()
+miFuncionPython()
+
+```
+
+## Funciones con un argumento.
+
+Una ventaja muy grande que tienen las funciones es recibir argumentos. Y estos argumentos son variables que se pueden utilizar para que las funciones sean flexibles.
+
+```{python}
+def imprimirInformacion(primerArgumento):
+  print("Mi argumento es:", primerArgumento)
+  
+imprimirInformacion("Parametro1")
+```
+
+### Funciones con más de un argumento.
+
+Es posible pasar más de un argumento a una función.
+
+```{python}
+def nombreApellido(Nombre, Apellido):
+  print("Su nombre es", Nombre, "y su apellido es", Apellido)
+  
+nombreApellido("Diego", "Saavedra")
+```
+
+## Errores con funciones.
+
+Uno de los errores típicos en funciones es pasar el número inadecuado de parámetros a una función.
+
+```{python}
+def nombreApellido(Nombre, Apellido):
+  print("Su nombre es", Nombre, "y su apellido es", Apellido)
+  
+#nombreApellido("Diego")
+```
+
+En este caso la salida es:
+
+    TypeError: NombreApellido() missing 1 required positional argument: 'Apellido'
+
+Lo cual indica claramente que es requerido el argumento Apellido en la función **nombreApellido()**
+
+## Argumentos Variables
+
+En alguna ocasión es necesario también crear funciones con argumentos variables, es decir que desconocemos el número necesario de argumentos que se pueda necesitar por diversas razones, en estos casos podemos hacer lo siguiente.
+
+```{python}
+def nombreApellido(*nombre):
+  print("Su nombre es", nombre)
+  
+nombreApellido("Diego", "Saavedra")
+```
+
+Sin embargo hay que tomar en cuenta que lo que estamos obteniendo es una túpla, esto quiere decir, si recordamos que la característica principal de las túplas es que arroja datos que no pueden ser modificados.
+
+Qué esto no nos preocupe, ya aprendimos a trabajar con la forma de acceder a los elementos de una túpla, por lo tanto podemos utilizar ese conocimiento para poder acceder al argumento que necesitemos.
+
+```{python}
+def nombreApellido(*nombre):
+  print("Su nombre es", nombre[0])
+  
+nombreApellido("Diego", "Saavedra")
+```
+
+y si quisiera acceder al 2do argumento (1er ítem).
+
+```{python}
+def nombreApellido(*nombre):
+  print("Su apellido es", nombre[1])
+  
+nombreApellido("Diego", "Saavedra")
+```
+
+Que sucedería si yo quisiera iterar sobre todos los elementos de esta tupla, podría utilizar los argumentos de for, otra alternativa para acceder a los argumentos de una función es la siguiente.
+
+```{python}
+def nombreCompleto(apellido, nombre):
+  print(nombre, apellido)
+  
+nombreCompleto(nombre="Diego", apellido="Saavedra")
+```
+
+## Kwargs
+
+Los kwargs es una opción muy conocida en Python, esto se utiliza cuando se quiere pasar argumentos de forma indeterminada.
+
+```{python}
+def nombreCompleto(**kwargs):
+  print(kwargs["nombre"], kwargs["apellido"])
+  
+nombreCompleto(nombre="Diego", apellido="Saavedra")
+```
+
+## Parámetros por defecto en los argumentos.
+
+En ocasiones vamos a necesitar pasar parámetros por defecto como argumentos para evitar errores posibles en el futuro.
+
+```{python}
+def nombreCompleto(nombre="Diego", apellido="Saavedra"):
+  print("Su nombre es", nombre, apellido)
+  
+nombreCompleto()
+nombreCompleto("Juan", "Perez")
+```
+
+Otro caso que nos podríamos encontrar es la necesidad de pasar como parámetro una lista. La estructura quedaría de la siguiente manera.
+
+```{python}
+def funcionLista(lista):
+  for el in lista:
+    print(el)
+    
+funcionLista(["Diego", "Saavedra"])
+```

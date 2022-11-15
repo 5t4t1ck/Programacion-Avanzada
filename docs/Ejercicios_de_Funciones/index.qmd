@@ -1,0 +1,67 @@
+---
+title: "Ejercicios con Funciones"
+subtitle: "Programación Avanzada"
+author: "Diego Saavedra García"
+date: today
+execute: 
+  enabled: true
+format: 
+  pdf:
+    lang: es
+    toc-depth: 3
+    logo: img/logo_uide.png
+    colorlinks: true
+    documentclass: report #tipo de documento
+    papersize: A4
+    highlight-style: radical #Resaltado de código
+    fontfamily: libertinus #Fuente de Texto
+    cite-method: biblatex
+    bibliography: references.bib
+    cls: apa.csl
+    biblio-title: Bibliografía
+    
+bibliography: Bibliografia.bib
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl"
+---
+
+# Ejercicios.
+
+A continuación desarrolle los siguiente ejercicios que le permitirán reforzar los conocimientos adquiridos en clase.
+
+## Ejercicio 1:
+
+-   Define una función llamada menorque() que nos devuelva en pantalla el número menor entre dos enteros. Define una salida de texto en caso de que.
+
+## Ejercicio 2:
+
+-   Define una función llamada num_max() que nos devuelva en pantalla el número mayor entre 4 diferentes enteros. No definas ningún valor a imprimir en caso de que ambos números sean iguales.
+
+## Ejercicio 3:
+
+-   Define una función llamada num_max_min() que nos devuelva en pantalla el número mayor y menor entre 3 diferentes enteros. En caso de que todos sean iguales imprime en pantalla un mensaje indicándolo.
+
+## Ejercicio 4:
+
+-   Define una función llamada num_max_min() que nos devuelva en pantalla el número mayor y menor entre 3 diferentes enteros. En caso de que todos sean iguales imprime en pantalla un mensaje indicándolo.
+
+## Ejercicio 5:
+
+-   Define una función que nos devuelva True si al darle una vocal mayúscula nos devuelva False, mientras que si es minúscula sea True.
+
+## Ejercicio 6:
+
+-   Define una función simple que no tenga parámetros y sólo imprima en pantalla un mensaje.
+
+## Ejercicio 7:
+
+-   Define una función que permita imprimir un mensaje en base a los valores tomados de una lista para comprobar si todos los de la lista son mayores o menores de edad.
+
+## Ejercicio 8:
+
+-   Define una función que permita multiplicar los números de una lista y sumar sus resultados.
+
+## Ejercicio 9:
+
+-   Crea un código que solicite ingresar el nombre de un archivo con su extensión y devuelva la extensión de la misma. Por ejemplo: La extensión de programando-aprenderpython.py es ".py".
+
+**Nota:** Cualquier inconveniente que se le pueda presentar lo podemos resolver en la tutoria, excelente semana.
